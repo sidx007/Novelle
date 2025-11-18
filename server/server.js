@@ -82,12 +82,14 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`\n🚀 Server running on port ${PORT}`);
-  console.log(`📍 API: http://localhost:${PORT}`);
-  console.log(`🌐 Client: ${process.env.CLIENT_URL}`);
-  console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}\n`);
-});
+// Start server (only in development)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`\n🚀 Server running on port ${PORT}`);
+    console.log(`📍 API: http://localhost:${PORT}`);
+    console.log(`🌐 Client: ${process.env.CLIENT_URL}`);
+    console.log(`📝 Environment: ${process.env.NODE_ENV || 'development'}\n`);
+  });
+}
 
 export default app;
